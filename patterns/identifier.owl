@@ -1,0 +1,138 @@
+@prefix : <http://ocean-data.org/pattern/identifier/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://ocean-data.org/pattern/identifier/> a owl:Ontology ;
+	owl:versionIRI <http://ocean-data.org/pattern/identifier/> ;
+	<http://purl.org/dc/terms/created> "2020-01-06"@en-us ;
+	<http://purl.org/dc/terms/modified> "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	<http://purl.org/dc/terms/issued> "2020-01-06"^^xsd:date ;
+	<http://purl.org/dc/terms/publisher> <http://lod.bco-dmo.org/id/affiliation/191> ;
+	rdfs:label "Pattern - Identifier"@en-us ;
+	<http://purl.org/dc/terms/description> "An ontology for describing identifiers."@en-us ;
+	<http://purl.org/vocab/vann/preferredNamespaceUri> "http://ocean-data.org/pattern/identifier/"^^xsd:anyURI ;
+	<http://purl.org/dc/terms/source> "https://github.com/BCODMO/Ocean-Data-Ontology_Identifier"^^<xsd:anyURI> ;
+	<http://purl.org/dc/terms/title> "Pattern - Identifier"@en-us ;
+	<http://purl.org/dc/terms/creator> <http://orcid.org/0000-0003-4486-9448> .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/alternative
+
+<http://purl.org/dc/terms/alternative> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/title
+
+<http://purl.org/dc/terms/title> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/identifier/identifiedBy
+
+:identifiedBy a owl:ObjectProperty ;
+	rdfs:domain owl:Thing ;
+	rdfs:range :Identifier .
+# 
+# http://ocean-data.org/pattern/identifier/identifierScheme
+
+:identifierScheme a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain :Identifier ;
+	rdfs:range :IdentifierScheme ;
+	rdfs:comment "A scheme in which an identifier value will be unique."@en-us ;
+	rdfs:label "identifierScheme"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/identifier/identifierValue
+
+:identifierValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Identifier ;
+	rdfs:range xsd:string ;
+	rdfs:comment "A value for an identifier which should be unique within a domain or realm."@en-us ;
+	rdfs:label "identifierValue"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/identifier/AgentIdentifierScheme
+
+:AgentIdentifierScheme a owl:Class ;
+	rdfs:subClassOf :IdentifierScheme ;
+	<http://purl.org/dc/terms/title> "Agent"@en-us ;
+	rdfs:comment "Identifier Schemes that describe Agents (people, organizations, etc.)"@en-us ;
+	rdfs:label "Agent Identifier Type"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/DigitalObjectIdentifier
+
+:DigitalObjectIdentifier a owl:Class ;
+	rdfs:subClassOf :HandleRegistryIdentifier ;
+	<http://purl.org/dc/terms/alternative> "DOI"@en-us ;
+	rdfs:comment "A DOI identifier"@en-us ;
+	rdfs:label "Digital Object Identifier (DOI)"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/DigitalResourceIdentifierScheme
+
+:DigitalResourceIdentifierScheme a owl:Class ;
+	rdfs:subClassOf :IdentifierScheme ;
+	rdfs:comment "Identifier Schemes that describe Digital Resources (datasets, publications, etc.)"@en-us ;
+	rdfs:label "Digital Resource Identifier Scheme"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/HandleRegistryIdentifier
+
+:HandleRegistryIdentifier a owl:Class ;
+	rdfs:subClassOf :DigitalResourceIdentifierScheme ;
+	<http://purl.org/dc/terms/alternative> "Handle"@en-us ;
+	rdfs:comment "A Handle Registry identifier"@en-us ;
+	rdfs:label "Handle Registry Identifier (HDL)"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/Identifier
+
+:Identifier a owl:Class ;
+	rdfs:comment "A unique identifier within some domain or realm"@en-us ;
+	rdfs:label "Identifier"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/IdentifierScheme
+
+:IdentifierScheme a owl:Class ;
+	rdfs:comment "A domain or realm in which an identifier value will be unique"@en-us ;
+	rdfs:label "IdentifierScheme"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/OpenResearcherAndContributorIdentifier
+
+:OpenResearcherAndContributorIdentifier a owl:Class ;
+	rdfs:subClassOf :AgentIdentifierScheme ;
+	<http://purl.org/dc/terms/alternative> "ORCID"@en-us ;
+	rdfs:comment "An ORCID Identifier"@en-us ;
+	rdfs:label "Open Researcher and Contributor ID (ORCID)"@en-us .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
