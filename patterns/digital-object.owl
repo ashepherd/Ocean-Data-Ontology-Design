@@ -249,7 +249,8 @@ _:genid11 a owl:Restriction ;
 
 _:genid12 a owl:Restriction ;
 	owl:onProperty :mediaType ;
-	owl:cardinality "1"^^xsd:nonNegativeInteger .
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :MediaType .
 
 :DigitalObject rdfs:subClassOf _:genid13 .
 
