@@ -71,7 +71,7 @@
 
 :identifierValue a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Identifier ;
-	rdfs:range xsd:string ;
+	rdfs:range xsd:token ;
 	rdfs:comment "A value for an identifier which should be unique within a domain or realm."@en-us ;
 	rdfs:label "identifierValue"@en-us .
 # 
@@ -83,6 +83,25 @@
 # #
 # #################################################################
 # 
+# 
+# http://ocean-data.org/pattern/identifier/AgentIdentifier
+
+:AgentIdentifier a owl:Class ;
+	rdfs:subClassOf :Identifier , _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:allValuesFrom :AgentIdentifierScheme .
+
+:AgentIdentifier rdfs:subClassOf _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :AgentIdentifierScheme .
+
+:AgentIdentifier rdfs:comment "An Identifier whose scheme is AgentIdentifierScheme"@en-us ;
+	rdfs:label "AgentIdentifier"@en-us .
 # 
 # http://ocean-data.org/pattern/identifier/AgentIdentifierScheme
 
@@ -99,6 +118,25 @@
 	<http://purl.org/dc/terms/alternative> "DOI"@en-us ;
 	rdfs:comment "A DOI identifier"@en-us ;
 	rdfs:label "Digital Object Identifier (DOI)"@en-us .
+# 
+# http://ocean-data.org/pattern/identifier/DigitalResourceIdentifier
+
+:DigitalResourceIdentifier a owl:Class ;
+	rdfs:subClassOf :Identifier , _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:allValuesFrom :DigitalResourceIdentifierScheme .
+
+:DigitalResourceIdentifier rdfs:subClassOf _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :DigitalResourceIdentifierScheme .
+
+:DigitalResourceIdentifier rdfs:comment "An Identifier whose scheme is DigitalResourceIdentifierScheme"@en-us ;
+	rdfs:label "DigitalResourceIdentifier"@en-us .
 # 
 # http://ocean-data.org/pattern/identifier/DigitalResourceIdentifierScheme
 
@@ -118,7 +156,33 @@
 # http://ocean-data.org/pattern/identifier/Identifier
 
 :Identifier a owl:Class ;
-	rdfs:comment "A unique identifier within some domain or realm"@en-us ;
+	rdfs:subClassOf _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:allValuesFrom :IdentifierScheme .
+
+:Identifier rdfs:subClassOf _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty :identifierScheme ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :IdentifierScheme .
+
+:Identifier rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty :identifierValue ;
+	owl:allValuesFrom xsd:token .
+
+:Identifier rdfs:subClassOf _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty :identifierValue ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:token .
+
+:Identifier rdfs:comment "A unique identifier within some domain or realm"@en-us ;
 	rdfs:label "Identifier"@en-us .
 # 
 # http://ocean-data.org/pattern/identifier/IdentifierScheme

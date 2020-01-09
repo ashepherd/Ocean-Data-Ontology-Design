@@ -1,0 +1,131 @@
+@prefix : <http://ocean-data.org/pattern/crypto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms> .
+
+<http://ocean-data.org/pattern/digital-object-storage/> a owl:Ontology ;
+	owl:versionIRI <http://ocean-data.org/pattern/digital-object-storage/> ;
+	owl:imports <http://ocean-data.org/pattern/identifier/> , <http://ocean-data.org/pattern/agent/> , <http://ocean-data.org/pattern/digital-object/> ;
+	<http://purl.org/dc/termssource> "https://github.com/BCODMO/Ocean-Data-Ontology_Digital-Object-Storage"^^<xsd:anyURI> ;
+	<http://purl.org/dc/termscreated> "2020-01-06"@en-us ;
+	<http://purl.org/dc/termsissued> "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	<http://purl.org/dc/termstitle> "Pattern - Digital Object Storage"@en-us ;
+	<http://purl.org/dc/termsmodified> "2020-01-06"^^xsd:date ;
+	<http://purl.org/dc/termspublisher> <http://lod.bco-dmo.org/id/affiliation/191> ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/digital-object-storage/"^^xsd:anyURI ;
+	<http://purl.org/dc/termscreator> <http://orcid.org/0000-0003-4486-9448> ;
+	rdfs:label "Pattern - Digital Object Storage"@en-us ;
+	<http://purl.org/dc/termsdescription> "An ontology for describing the storage of digital objects."@en-us .
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/digital-object-storage/inStore
+
+<http://ocean-data.org/pattern/digital-object-storage/inStore> a owl:ObjectProperty ;
+	rdfs:subPropertyOf owl:topObjectProperty ;
+	a owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/digital-object-storage/StorageLocation> ;
+	rdfs:range <http://ocean-data.org/pattern/digital-object-storage/StorageScheme> .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/operatedBy
+
+<http://ocean-data.org/pattern/digital-object-storage/operatedBy> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/digital-object-storage/StorageScheme> ;
+	rdfs:range <http://ocean-data.org/pattern/agent/Agent> ;
+	rdfs:comment "Specifies the Agent who is responsible for operating the StorageScheme. This could be useful for understanding who needs to be contacted about issues with the store."@en-us ;
+	rdfs:label "operatedBy"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/storedAt
+
+<http://ocean-data.org/pattern/digital-object-storage/storedAt> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://ocean-data.org/pattern/identifier/identifiedBy> ;
+	rdfs:domain <http://ocean-data.org/pattern/digital-object/DigitalObject> ;
+	rdfs:range <http://ocean-data.org/pattern/digital-object-storage/StorageLocation> ;
+	rdfs:comment "Specifies the StorageLocation for a DigitalObject within some StorageScheme."@en-us ;
+	rdfs:label "storedAt"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/digital-object-storage/hostName
+
+<http://ocean-data.org/pattern/digital-object-storage/hostName> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/digital-object-storage/StorageScheme> ;
+	rdfs:range xsd:token ;
+	rdfs:comment "The host name of the service."@en-us ;
+	rdfs:label "hostName"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/objectPath
+
+<http://ocean-data.org/pattern/digital-object-storage/objectPath> a owl:DatatypeProperty ;
+	rdfs:subPropertyOf <http://ocean-data.org/pattern/identifier/identifierValue> ;
+	a owl:FunctionalProperty ;
+	rdfs:comment "The full, absolute path, that exists as the unique value within some scheme identifying the DigitalObject. (e.g. for POSIX file systems, a valid value could be `/var/datafiles/myproject/carbon/ver1/data.csv`. In S3, the value would be the bucket name + any prefixes + the object id: `/mybucket/myproject/carbon/ver1/data.csv`)."@en-us ;
+	rdfs:label "objectPath"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/versionIdentifier
+
+<http://ocean-data.org/pattern/digital-object-storage/versionIdentifier> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:range xsd:token .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/digital-object-storage/POSIXStorageScheme
+
+<http://ocean-data.org/pattern/digital-object-storage/POSIXStorageScheme> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/digital-object-storage/StorageScheme> ;
+	rdfs:comment "A POSIX file store."@en-us ;
+	rdfs:label "POSIXStorageScheme"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/S3StorageLocation
+
+<http://ocean-data.org/pattern/digital-object-storage/S3StorageLocation> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/digital-object-storage/StorageLocation> ;
+	rdfs:comment "An S3 Storage Location which will explicitly define a bucket, prefixes, and an object name. The Prefix and object name can be combined to form a unique identifier within the bucket. The objectPath would have the the full bucket + prefixes + object name all together, but this class lets a resource specify which components in the objectPath are which."@en-us ;
+	rdfs:label "S3StorageLocation"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/S3StorageScheme
+
+<http://ocean-data.org/pattern/digital-object-storage/S3StorageScheme> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/digital-object-storage/StorageScheme> ;
+	rdfs:comment "An S3 object store."@en-us ;
+	rdfs:label "S3StorageScheme"@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/StorageLocation
+
+<http://ocean-data.org/pattern/digital-object-storage/StorageLocation> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/identifier/Identifier> ;
+	rdfs:label "StorageLocation"@en-us , "The unique storage location within some StorageScheme for a DigitalObject."@en-us .
+# 
+# http://ocean-data.org/pattern/digital-object-storage/StorageScheme
+
+<http://ocean-data.org/pattern/digital-object-storage/StorageScheme> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/identifier/IdentifierScheme> ;
+	rdfs:comment "The storage scheme for a certain StorageLocation."@en-us ;
+	rdfs:label "StorageScheme"@en-us .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

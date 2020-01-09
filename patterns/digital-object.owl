@@ -70,6 +70,10 @@ vann:preferredNamespacePrefix a owl:AnnotationProperty .
 
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 # 
+# http://www.w3.org/2002/07/owl#minQualifiedCardinality
+
+owl:minQualifiedCardinality a owl:AnnotationProperty .
+# 
 # 
 # 
 # #################################################################
@@ -78,14 +82,6 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 # #
 # #################################################################
 # 
-# 
-# http://ocean-data.org/pattern/digital-object/authoritativeCurator
-
-:authoritativeCurator a owl:ObjectProperty , owl:FunctionalProperty ;
-	rdfs:domain :DigitalObject ;
-	rdfs:range owl:Thing ;
-	rdfs:comment "The authoritative Agent ultimately responsible for the curation of this Digital Object."@en-us ;
-	rdfs:label "authoritativeCurator"@en-us .
 # 
 # http://ocean-data.org/pattern/digital-object/characterSet
 
@@ -130,11 +126,17 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 # #################################################################
 # 
 # 
+# http://ocean-data.org/pattern/digital-object/byteSize
+
+:byteSize a owl:DatatypeProperty ;
+	rdfs:domain :DigitalObject ;
+	rdfs:range xsd:decimal .
+# 
 # http://ocean-data.org/pattern/digital-object/characterEncoding
 
 :characterEncoding a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :CharacterSet ;
-	rdfs:range xsd:string ;
+	rdfs:range xsd:token ;
 	rdfs:comment "The character encoding value as a string"@en-us ;
 	rdfs:label "characterEncoding"@en-us .
 # 
@@ -142,7 +144,7 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 :defaultFileExtension a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :MediaType ;
-	rdfs:range xsd:string ;
+	rdfs:range xsd:token ;
 	rdfs:comment "The default file extension, omitting the leading '.'. Example, NetCDF may have a value of 'nc'. MATLAB may have a value of 'mat'."@en-us ;
 	rdfs:label "defaultFileExtension"@en-us .
 # 
@@ -150,7 +152,7 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 :mimeType a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :MediaType ;
-	rdfs:range xsd:string ;
+	rdfs:range xsd:token ;
 	rdfs:comment "the MIME type best representative of a certain media type. Example: text/plain"@en-us ;
 	rdfs:label "mimeType"@en-us .
 # 
@@ -170,8 +172,14 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 _:genid1 a owl:Restriction ;
 	owl:onProperty :characterEncoding ;
+	owl:allValuesFrom xsd:token .
+
+:CharacterSet rdfs:subClassOf _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty :characterEncoding ;
 	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-	owl:onDataRange xsd:string .
+	owl:onDataRange xsd:token .
 
 :CharacterSet rdfs:comment "The character set used to encode a digital object. Most typically UTF-8."@en-us ;
 	rdfs:label "Character Set"@en-us ;
@@ -180,17 +188,81 @@ _:genid1 a owl:Restriction ;
 # http://ocean-data.org/pattern/digital-object/DigitalObject
 
 :DigitalObject a owl:Class ;
-	rdfs:subClassOf _:genid2 .
-
-_:genid2 a owl:Restriction ;
-	owl:onProperty :characterSet ;
-	owl:cardinality "1"^^xsd:nonNegativeInteger .
-
-:DigitalObject rdfs:subClassOf _:genid3 .
+	rdfs:subClassOf _:genid3 .
 
 _:genid3 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/crypto/cryptographicHash> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/crypto/CryptographicHash> .
+
+:DigitalObject rdfs:subClassOf _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty :characterSet ;
+	owl:allValuesFrom :CharacterSet .
+
+:DigitalObject rdfs:subClassOf _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty :derivedFrom ;
+	owl:allValuesFrom :DigitalObject .
+
+:DigitalObject rdfs:subClassOf _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty :mediaType ;
+	owl:allValuesFrom :MediaType .
+
+:DigitalObject rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty :revisionOf ;
+	owl:allValuesFrom :DigitalObject .
+
+:DigitalObject rdfs:subClassOf _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/identifier/identifiedBy> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/identifier/DigitalResourceIdentifier> .
+
+:DigitalObject rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/crypto/cryptographicHash> ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/crypto/CryptographicHash> .
+
+:DigitalObject rdfs:subClassOf _:genid10 .
+
+_:genid10 a owl:Restriction ;
+	owl:onProperty :characterSet ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :CharacterSet .
+
+:DigitalObject rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/identifier/identifiedBy> ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/identifier/DigitalResourceIdentifier> .
+
+:DigitalObject rdfs:subClassOf _:genid12 .
+
+_:genid12 a owl:Restriction ;
 	owl:onProperty :mediaType ;
 	owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+:DigitalObject rdfs:subClassOf _:genid13 .
+
+_:genid13 a owl:Restriction ;
+	owl:onProperty :byteSize ;
+	owl:allValuesFrom xsd:decimal .
+
+:DigitalObject rdfs:subClassOf _:genid14 .
+
+_:genid14 a owl:Restriction ;
+	owl:onProperty :byteSize ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:decimal .
 
 :DigitalObject rdfs:comment "An electronic file or document."@en-us ;
 	rdfs:label "Digital Object"@en-us .
@@ -198,23 +270,39 @@ _:genid3 a owl:Restriction ;
 # http://ocean-data.org/pattern/digital-object/MediaType
 
 :MediaType a owl:Class ;
-	rdfs:subClassOf _:genid4 .
+	rdfs:subClassOf _:genid15 .
 
-_:genid4 a owl:Restriction ;
+_:genid15 a owl:Restriction ;
+	owl:onProperty :defaultFileExtension ;
+	owl:allValuesFrom xsd:token .
+
+:MediaType rdfs:subClassOf _:genid16 .
+
+_:genid16 a owl:Restriction ;
+	owl:onProperty :mimeType ;
+	owl:allValuesFrom xsd:token .
+
+:MediaType rdfs:subClassOf _:genid17 .
+
+_:genid17 a owl:Restriction ;
 	owl:onProperty :mimeType ;
 	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-	owl:onDataRange xsd:string .
+	owl:onDataRange xsd:token .
 
-:MediaType rdfs:subClassOf _:genid5 .
+:MediaType rdfs:subClassOf _:genid18 .
 
-_:genid5 a owl:Restriction ;
+_:genid18 a owl:Restriction ;
 	owl:onProperty :defaultFileExtension ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-	owl:onDataRange xsd:string .
+	owl:onDataRange xsd:token .
 
 :MediaType rdfs:comment "The MIME Type for a digital object. This helps ensure the correct mime type is provided when the digital object is requested."@en-us ;
 	rdfs:label "Media Type"@en-us .
 # 
+
+_:genid19 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger .
+
+_:genid20 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger .
 # 
 # 
 # #################################################################
@@ -225,18 +313,18 @@ _:genid5 a owl:Restriction ;
 # 
 # 
 
-_:genid6 a owl:AllDisjointClasses ;
-	owl:members _:genid9 .
+_:genid21 a owl:AllDisjointClasses ;
+	owl:members _:genid24 .
 
-_:genid9 a rdf:List ;
+_:genid24 a rdf:List ;
 	rdf:first :CharacterSet ;
-	rdf:rest _:genid8 .
+	rdf:rest _:genid23 .
 
-_:genid8 a rdf:List ;
+_:genid23 a rdf:List ;
 	rdf:first :DigitalObject ;
-	rdf:rest _:genid7 .
+	rdf:rest _:genid22 .
 
-_:genid7 a rdf:List ;
+_:genid22 a rdf:List ;
 	rdf:first :MediaType ;
 	rdf:rest rdf:nil .
 # 
