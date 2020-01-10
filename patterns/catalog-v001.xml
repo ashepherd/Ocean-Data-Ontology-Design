@@ -6,5 +6,6 @@
     <uri id="Crypto" name="http://ocean-data.org/pattern/crypto/" uri="crypto.owl"/>
     <uri id="DigitalObject" name="http://ocean-data.org/pattern/digital-object/" uri="digital-object.owl"/>
     <uri id="DigitalObjectStorage" name="http://ocean-data.org/pattern/digital-object-storage/" uri="digital-object-storage.owl"/>
+    <uri id="Policy" name="http://ocean-data.org/pattern/policy/" uri="policy.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
 </catalog>

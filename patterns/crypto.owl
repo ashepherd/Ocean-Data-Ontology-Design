@@ -5,44 +5,44 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
-@prefix dcterms: <http://purl.org/dc/terms> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 <http://ocean-data.org/pattern/crypto/> a owl:Ontology ;
 	owl:versionIRI <http://ocean-data.org/pattern/crypto/> ;
 	owl:imports <http://ocean-data.org/pattern/identifier/> ;
-	<http://purl.org/dc/termssource> "https://github.com/BCODMO/Ocean-Data-Ontology_Crypto"^^<xsd:anyURI> ;
-	<http://purl.org/dc/termscreated> "2020-01-06"@en-us ;
-	<http://purl.org/dc/termstitle> "Pattern - Cryptographic Hash"@en-us ;
-	<http://purl.org/dc/termsissued> "2020-01-06"^^xsd:date ;
 	owl:versionInfo "0.1.0"@en-us ;
-	<http://purl.org/dc/termsmodified> "2020-01-06"^^xsd:date ;
-	<http://purl.org/dc/termspublisher> <http://lod.bco-dmo.org/id/affiliation/191> ;
-	vann:preferredNamespaceUri "http://ocean-data.org/pattern/crypto/"^^xsd:anyURI ;
-	<http://purl.org/dc/termsdescription> "An ontology for describing cryptographic hashes."@en-us ;
-	<http://purl.org/dc/termscreator> <http://orcid.org/0000-0003-4486-9448> ;
-	rdfs:label "Pattern - Cryptographic Hash"@en-us .
-# 
-# 
+	rdfs:label "Pattern - Cryptographic Hash"@en-us ;
+	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Crypto"^^<xsd:anyURI> ;
+	dcterms:created "2020-01-06"@en-us ;
+	dcterms:title "Pattern - Cryptographic Hash"@en-us ;
+	dcterms:issued "2020-01-06"^^xsd:date ;
+	dcterms:modified "2020-01-06"^^xsd:date ;
+	dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
+	dcterms:description "An ontology for describing cryptographic hashes."@en-us ;
+	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/crypto/"^^xsd:anyURI .
+#
+#
 # #################################################################
 # #
 # #    Annotation properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://purl.org/dc/terms/alternative
 
-<http://purl.org/dc/terms/alternative> a owl:AnnotationProperty .
-# 
-# 
-# 
+dcterms:alternative a owl:AnnotationProperty .
+#
+#
+#
 # #################################################################
 # #
 # #    Object Properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHash
 
 :cryptographicHash a owl:ObjectProperty ;
@@ -51,7 +51,7 @@
 	rdfs:range :CryptographicHash ;
 	rdfs:comment "The cryptographic hash for some resource"@en-us ;
 	rdfs:label "cryptographicHash"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHashScheme
 
 :cryptographicHashScheme a owl:ObjectProperty ;
@@ -59,16 +59,16 @@
 	a owl:FunctionalProperty ;
 	rdfs:comment "The cryptographic hash scheme that was used to generate the hash value."@en-us ;
 	rdfs:label "cryptographicHashScheme"@en-us .
-# 
-# 
-# 
+#
+#
+#
 # #################################################################
 # #
 # #    Data properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHashValue
 
 :cryptographicHashValue a owl:DatatypeProperty ;
@@ -78,16 +78,16 @@
 	rdfs:range xsd:token ;
 	rdfs:comment "The hash value generated for some resource using a certain cryptographic hash scheme"@en-us ;
 	rdfs:label "cryptographicHashValue"@en-us .
-# 
-# 
-# 
+#
+#
+#
 # #################################################################
 # #
 # #    Classes
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/CryptographicHash
 
 :CryptographicHash a owl:Class ;
@@ -106,7 +106,7 @@ _:genid2 a owl:Restriction ;
 
 :CryptographicHash rdfs:comment "A cryptographic hash for some resource"@en-us ;
 	rdfs:label "Cryptographic Hash"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/CryptographicHashScheme
 
 :CryptographicHashScheme a owl:Class ;
@@ -114,23 +114,23 @@ _:genid2 a owl:Restriction ;
 	rdfs:comment "A scheme for cryptographic hashes as identifiers"@en-us ;
 	rdfs:label "Cryptographic Hash Scheme"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions> .
-# 
+#
 # http://ocean-data.org/pattern/crypto/MD5Scheme
 
 :MD5Scheme a owl:Class ;
 	rdfs:subClassOf :CryptographicHashScheme ;
-	<http://purl.org/dc/terms/alternative> "MD5"@en-us ;
+	dcterms:alternative "MD5"@en-us ;
 	rdfs:comment "An MD5 hash"@en-us ;
 	rdfs:label "Message Digest Algorithm 5"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5> .
-# 
+#
 # http://ocean-data.org/pattern/crypto/SHA256Scheme
 
 :SHA256Scheme a owl:Class ;
 	rdfs:subClassOf :CryptographicHashScheme ;
-	<http://purl.org/dc/terms/alternative> "SHA256"@en-us ;
+	dcterms:alternative "SHA256"@en-us ;
 	rdfs:comment "A SHA256 hash"@en-us ;
 	rdfs:label "Secure Hash Algorithm 256"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/sha256> .
-# 
+#
 # Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
