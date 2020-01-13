@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Activity" name="http://ocean-data.org/pattern/activity/" uri="activity.owl"/>
     <uri id="Credential" name="http://ocean-data.org/pattern/credential/" uri="credential.owl"/>
     <uri id="CreativeWork" name="http://ocean-data.org/pattern/creative-work/" uri="creative-work.owl"/>
     <uri id="OWL-Time" name="http://www.w3.org/2006/time#2016" uri="http://www.w3.org/2006/time"/>

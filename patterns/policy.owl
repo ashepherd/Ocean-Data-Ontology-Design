@@ -8,54 +8,204 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 <http://ocean-data.org/pattern/policy/> a owl:Ontology ;
-  owl:versionIRI <http://ocean-data.org/pattern/policy/> ;
-  owl:imports <http://ocean-data.org/pattern/identifier/> , <http://ocean-data.org/pattern/agent/> ;
-  rdfs:label "Pattern - Policy"@en-us ;
-  dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Policy"^^<xsd:anyURI> ;
-  dcterms:created "2020-01-06"@en-us ;
-  dcterms:issued "2020-01-06"^^xsd:date ;
-  owl:versionInfo "0.1.0"@en-us ;
-  dcterms:title "Pattern - Policy"@en-us ;
-  dcterms:modified "2020-01-06"^^xsd:date ;
-  dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
-  dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
-  dcterms:description "An ontology for describing policies."@en-us ;
-  vann:preferredNamespaceUri "http://ocean-data.org/pattern/policy/"^^xsd:anyURI .
-
-vann:preferredNamespaceUri a owl:AnnotationProperty .
-
+	owl:versionIRI <http://ocean-data.org/pattern/policy/> ;
+	owl:imports <http://ocean-data.org/pattern/activity/> , <http://ocean-data.org/pattern/credential/> , <http://ocean-data.org/pattern/agent/> , <http://www.w3.org/2006/time#2016> ;
+	rdfs:label "Pattern - Policy"@en-us ;
+	dcterms:created "2020-01-06"@en-us ;
+	dcterms:modified "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Policy"^^<xsd:anyURI> ;
+	dcterms:issued "2020-01-06"^^xsd:date ;
+	dcterms:title "Pattern - Policy"@en-us ;
+	dcterms:description "An ontology for describing policies."@en-us ;
+	dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
+	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/policy/"^^xsd:anyURI .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
 # http://purl.org/dc/terms/alternative
 
 dcterms:alternative a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/created
 
 dcterms:created a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/creator
 
 dcterms:creator a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/description
 
 dcterms:description a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/issued
 
 dcterms:issued a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/modified
 
 dcterms:modified a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/publisher
 
 dcterms:publisher a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/source
 
 dcterms:source a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/title
 
 dcterms:title a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/policy/appliesTo
+
+<http://ocean-data.org/pattern/policy/appliesTo> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range owl:Thing ;
+	rdfs:comment "The Thing to which the Policy applies wherein the Thing has Activities that share the same Action as this Policy. (ex: applies to Dataset:123 so that only certain credentials can download the dataset)"@en-us ;
+	rdfs:label "appliesTo"@en-us .
+# 
+# http://ocean-data.org/pattern/policy/authority
+
+<http://ocean-data.org/pattern/policy/authority> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range <http://ocean-data.org/pattern/agent/Agent> ;
+	rdfs:comment "The Agent which has authorized, and typically, authored, the Policy."@en-us ;
+	rdfs:label "authority"@en-us .
+# 
+# http://ocean-data.org/pattern/policy/onAction
+
+<http://ocean-data.org/pattern/policy/onAction> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range <http://ocean-data.org/pattern/activity/Action> ;
+	rdfs:comment "The Action to which the Policy applies"@en-us ;
+	rdfs:label "onAction"@en-us .
+# 
+# http://ocean-data.org/pattern/policy/requiresCredential
+
+<http://ocean-data.org/pattern/policy/requiresCredential> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range <http://ocean-data.org/pattern/credential/Credential> ;
+	rdfs:comment "A credential that is required on the Policy's specified Action(s) applying to the subject of focus."@en-us ;
+	rdfs:label "requiresCredential"@en-us .
+# 
+# http://ocean-data.org/pattern/policy/validBetween
+
+<http://ocean-data.org/pattern/policy/validBetween> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
+	rdfs:comment "The temporal interval or durationn inn which the Policy is valid."@en-us ;
+	rdfs:label "validBetween"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/policy/active
+
+<http://ocean-data.org/pattern/policy/active> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Policy> ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Whether or not the Policy is presently active or not."@en-us ;
+	rdfs:label "active"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/policy/Policy
+
+<http://ocean-data.org/pattern/policy/Policy> a owl:Class ;
+	rdfs:subClassOf _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/authority> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/agent/Agent> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/onAction> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/activity/Action> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/requiresCredential> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/credential/Credential> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/validBetween> ;
+	owl:allValuesFrom <http://www.w3.org/2006/time#TemporalEntity> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/appliesTo> ;
+	owl:minCardinality "1"^^xsd:nonNegativeInteger .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/onAction> ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/activity/Action> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/authority> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/agent/Agent> .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/active> ;
+	owl:allValuesFrom xsd:boolean .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/policy/active> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:boolean .
+
+<http://ocean-data.org/pattern/policy/Policy> rdfs:comment "Refers to something that governs or restricts activity on or within a certain thing. Such as access to read, dowload, write a Dataset, DigitalObject, etc. Governance involves the requirement of some Credential. The policy ca nbe valid between a certain timeframe and/or be activated or deactivated."@en-us ;
+	rdfs:label "Policy"@en-us .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

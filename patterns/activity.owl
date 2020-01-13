@@ -1,0 +1,305 @@
+@prefix : <http://ocean-data.org/pattern/crypto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://ocean-data.org/pattern/activity/> a owl:Ontology ;
+	owl:versionIRI <http://ocean-data.org/pattern/activity/> ;
+	owl:imports <http://ocean-data.org/pattern/agent/> ;
+	dcterms:description "An ontology for describing activities."@en-us ;
+	dcterms:created "2020-01-06"@en-us ;
+	dcterms:modified "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	dcterms:issued "2020-01-06"^^xsd:date ;
+	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Activity"^^<xsd:anyURI> ;
+	dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
+	rdfs:label "Pattern - Activity"@en-us ;
+	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
+	dcterms:title "Pattern - Activity"@en-us ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/activity/"^^xsd:anyURI .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/alternative
+
+dcterms:alternative a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/created
+
+dcterms:created a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/creator
+
+dcterms:creator a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/description
+
+dcterms:description a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/issued
+
+dcterms:issued a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/modified
+
+dcterms:modified a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/publisher
+
+dcterms:publisher a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/source
+
+dcterms:source a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/title
+
+dcterms:title a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/activity/object
+
+<http://ocean-data.org/pattern/activity/object> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Activity> ;
+	rdfs:range owl:Thing ;
+	rdfs:comment "The object of focus which helps the Agents transact the activity."@en-us ;
+	rdfs:label "object"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/ofAction
+
+<http://ocean-data.org/pattern/activity/ofAction> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Activity> ;
+	rdfs:range <http://ocean-data.org/pattern/activity/Action> ;
+	rdfs:comment "The type of Action this Activity represents."@en-us ;
+	rdfs:label "ofAction"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/providedBy
+
+<http://ocean-data.org/pattern/activity/providedBy> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/activity/EntryPoint> ;
+	rdfs:range <http://ocean-data.org/pattern/agent/Agent> ;
+	rdfs:comment "The Agent providing the EntryPoint"@en-us ;
+	rdfs:label "providedBy"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/result
+
+<http://ocean-data.org/pattern/activity/result> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Activity> ;
+	rdfs:range owl:Thing ;
+	rdfs:comment "The end result, if any, of completing the Activity. (ex: the serialized ZIP file of a Dataset)"@en-us ;
+	rdfs:label "result"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/target
+
+<http://ocean-data.org/pattern/activity/target> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/policy/Activity> ;
+	rdfs:range <http://ocean-data.org/pattern/activity/EntryPoint> ;
+	rdfs:comment "The target EntryPoint where the Actvity materializes."@en-us ;
+	rdfs:label "target"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/activity/Action
+
+<http://ocean-data.org/pattern/activity/Action> a owl:Class ;
+	rdfs:comment "The specific type of Activity - Read, Write, Append, Download, etc."@en-us ;
+	rdfs:label "Action"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/EntryPoint
+
+<http://ocean-data.org/pattern/activity/EntryPoint> a owl:Class ;
+	rdfs:subClassOf _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/providedBy> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/agent/Agent> .
+
+<http://ocean-data.org/pattern/activity/EntryPoint> rdfs:subClassOf _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/providedBy> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/agent/Agent> .
+
+<http://ocean-data.org/pattern/activity/EntryPoint> rdfs:comment "Refers to the place (real or virtual) provided by some Agent for the sake of some other Agent achieving a result related to some Thing. (ex: a Data Repository provides a Dataset download URL that anyone can use to download a ZIP file of the dataset. The Data Repository is the providing Agent, the URL is the EntryPoint, the object is the Dataset. The activity is downloading the dataset as a ZIP file at the URL. The result is a Zip file.)"@en-us ;
+	rdfs:label "Entry Point"@en-us .
+# 
+# http://ocean-data.org/pattern/policy/Activity
+
+<http://ocean-data.org/pattern/policy/Activity> a owl:Class ;
+	rdfs:subClassOf _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/ofAction> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/activity/Action> .
+
+<http://ocean-data.org/pattern/policy/Activity> rdfs:subClassOf _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/target> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/activity/EntryPoint> .
+
+<http://ocean-data.org/pattern/policy/Activity> rdfs:subClassOf _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/object> ;
+	owl:minCardinality "1"^^xsd:nonNegativeInteger .
+
+<http://ocean-data.org/pattern/policy/Activity> rdfs:subClassOf _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/ofAction> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/activity/Action> .
+
+<http://ocean-data.org/pattern/policy/Activity> rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/activity/target> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/activity/EntryPoint> .
+
+<http://ocean-data.org/pattern/policy/Activity> rdfs:comment "Refers to some action that can be taken on or within some Thing. This activity is provided through mechanism such as a Software Application, and the activity provides some EntryPoint at which the activity is successfully completed."@en-us ;
+	rdfs:label "Activity"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/activity/DownloadAction
+
+<http://ocean-data.org/pattern/activity/DownloadAction> a owl:NamedIndividual , <http://ocean-data.org/pattern/activity/Action> ;
+	owl:sameAs <http://ocean-data.org/pattern/activity/EveryAction> ;
+	rdfs:comment "Refers to the ability to download."@en-us ;
+	rdfs:label "Download Action"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/EveryAction
+
+<http://ocean-data.org/pattern/activity/EveryAction> a owl:NamedIndividual , <http://ocean-data.org/pattern/activity/Action> ;
+	owl:sameAs <http://ocean-data.org/pattern/activity/ReadAction> , <http://ocean-data.org/pattern/activity/ViewAction> , <http://ocean-data.org/pattern/activity/WriteAction> ;
+	rdfs:comment "A proxy for all possible Actions includinng those that presently exist or may exist in the future."@en-us ;
+	rdfs:label "Every Action"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/ReadAction
+
+<http://ocean-data.org/pattern/activity/ReadAction> a owl:NamedIndividual , <http://ocean-data.org/pattern/activity/Action> ;
+	owl:sameAs <http://ocean-data.org/pattern/activity/ViewAction> ;
+	rdfs:comment "Refers to the ability to read."@en-us ;
+	rdfs:label "Read Action"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/ViewAction
+
+<http://ocean-data.org/pattern/activity/ViewAction> a owl:NamedIndividual , <http://ocean-data.org/pattern/activity/Action> ;
+	rdfs:comment "Refers to the ability to view."@en-us ;
+	rdfs:label "View Action"@en-us .
+# 
+# http://ocean-data.org/pattern/activity/WriteAction
+
+<http://ocean-data.org/pattern/activity/WriteAction> a owl:NamedIndividual , <http://ocean-data.org/pattern/activity/Action> ;
+	rdfs:comment "Refers to the ability to write."@en-us ;
+	rdfs:label "Write Action"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    General axioms
+# #
+# #################################################################
+# 
+# 
+
+_:genid8 a owl:AllDifferent ;
+	owl:distinctMembers _:genid10 .
+
+_:genid10 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/DownloadAction> ;
+	rdf:rest _:genid9 .
+
+_:genid9 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/ReadAction> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid11 a owl:AllDifferent ;
+	owl:distinctMembers _:genid13 .
+
+_:genid13 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/DownloadAction> ;
+	rdf:rest _:genid12 .
+
+_:genid12 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/ViewAction> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid14 a owl:AllDifferent ;
+	owl:distinctMembers _:genid16 .
+
+_:genid16 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/DownloadAction> ;
+	rdf:rest _:genid15 .
+
+_:genid15 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/WriteAction> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid17 a owl:AllDifferent ;
+	owl:distinctMembers _:genid19 .
+
+_:genid19 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/ReadAction> ;
+	rdf:rest _:genid18 .
+
+_:genid18 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/WriteAction> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid20 a owl:AllDifferent ;
+	owl:distinctMembers _:genid22 .
+
+_:genid22 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/ViewAction> ;
+	rdf:rest _:genid21 .
+
+_:genid21 a rdf:List ;
+	rdf:first <http://ocean-data.org/pattern/activity/WriteAction> ;
+	rdf:rest rdf:nil .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
