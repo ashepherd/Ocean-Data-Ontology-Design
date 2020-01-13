@@ -1,0 +1,332 @@
+@prefix : <http://ocean-data.org/pattern/crypto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#2016> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://ocean-data.org/pattern/creative-work/> a owl:Ontology ;
+	owl:versionIRI <http://ocean-data.org/pattern/creative-work/> ;
+	owl:imports <http://ocean-data.org/pattern/identifier/> , <http://ocean-data.org/pattern/agent/> , <http://www.w3.org/2006/time#2016> ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/creative-work/"^^xsd:anyURI ;
+	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Creative-Work"^^<xsd:anyURI> ;
+	dcterms:created "2020-01-06"@en-us ;
+	dcterms:modified "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	dcterms:issued "2020-01-06"^^xsd:date ;
+	dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
+	rdfs:label "Pattern - Creative Work"@en-us ;
+	dcterms:description "An ontology for describing creative works."@en-us ;
+	dcterms:title "Pattern - Creative Work"@en-us ;
+	dcterms:creator <http://orcid.org/0000-0003-4486-9448> .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/agent/providesRole
+
+<http://ocean-data.org/pattern/agent/providesRole> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Datatypes
+# #
+# #################################################################
+# 
+# 
+# http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+
+rdf:langString a rdfs:Datatype .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/creative-work/about
+
+<http://ocean-data.org/pattern/creative-work/about> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range owl:Thing ;
+	rdfs:comment "A keyword, subject, or some other entity of which this creative work is about."@en-us ;
+	rdfs:label "about"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/cites
+
+<http://ocean-data.org/pattern/creative-work/cites> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://ocean-data.org/pattern/creative-work/references> ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "A formal acknowledgement by the author(s) that this CreativeWork cites another CreativeWork as an influence to some degree."@en-us ;
+	rdfs:label "cites"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/hasPart
+
+<http://ocean-data.org/pattern/creative-work/hasPart> a owl:ObjectProperty ;
+	owl:inverseOf <http://ocean-data.org/pattern/creative-work/isPartOf> ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "This CreativeWork is formed by a part i nanother CreativeWork"@en-us ;
+	rdfs:label "hasPart"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/isPartOf
+
+<http://ocean-data.org/pattern/creative-work/isPartOf> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "This CreativeWork is part of annother CreativeWork"@en-us ;
+	rdfs:label "isPartOf"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/license
+
+<http://ocean-data.org/pattern/creative-work/license> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range owl:Thing ;
+	rdfs:comment "The license governing the CreativeWork."@en-us ;
+	rdfs:label "license"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/mentions
+
+<http://ocean-data.org/pattern/creative-work/mentions> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "A CreativeWork mentioned in the contents of this CreativeWork"@en-us ;
+	rdfs:label "mentions"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/references
+
+<http://ocean-data.org/pattern/creative-work/references> a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "This CreativeWork references another CreativeWork."@en-us ;
+	rdfs:label "references"@en-us .
+# 
+# http://ocean-data.org/pattern/crypto/derivedFrom
+
+:derivedFrom a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "This CreativeWork was dervied from a pre-existing CreativeWork."@en-us ;
+	rdfs:label "derivedFrom"@en-us ;
+	rdfs:seeAlso "https://www.w3.org/TR/2013/REC-prov-dm-20130430/#concept-derivation"^^xsd:anyURI .
+# 
+# http://ocean-data.org/pattern/crypto/revisionOf
+
+:revisionOf a owl:ObjectProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:comment "This CreativeWork is a revision of a pre-existing CreativeWork"@en-us ;
+	rdfs:label "revisionOf"@en-us ;
+	rdfs:seeAlso "https://www.w3.org/TR/2013/REC-prov-dm-20130430/#concept-revision"^^xsd:anyURI .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/creative-work/abstract
+
+<http://ocean-data.org/pattern/creative-work/abstract> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range rdf:langString ;
+	rdfs:comment "The abstract of the CreativeWork"@en-us ;
+	rdfs:label "abstract"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/created
+
+<http://ocean-data.org/pattern/creative-work/created> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range _:genid1 .
+
+_:genid1 a rdfs:Datatype ;
+	owl:unionOf _:genid5 .
+
+_:genid5 a rdf:List ;
+	rdf:first xsd:date ;
+	rdf:rest _:genid4 .
+
+_:genid4 a rdf:List ;
+	rdf:first xsd:dateTime ;
+	rdf:rest _:genid3 .
+
+_:genid3 a rdf:List ;
+	rdf:first xsd:gYear ;
+	rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first xsd:gYearMonth ;
+	rdf:rest rdf:nil .
+
+<http://ocean-data.org/pattern/creative-work/created> rdfs:comment "The created date and/or time."@en-us ;
+	rdfs:label "created"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/description
+
+<http://ocean-data.org/pattern/creative-work/description> a owl:DatatypeProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range rdf:langString ;
+	rdfs:comment "The description of the CreativeWork."@en-us ;
+	rdfs:label "description"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/published
+
+<http://ocean-data.org/pattern/creative-work/published> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range _:genid6 .
+
+_:genid6 a rdfs:Datatype ;
+	owl:unionOf _:genid10 .
+
+_:genid10 a rdf:List ;
+	rdf:first xsd:date ;
+	rdf:rest _:genid9 .
+
+_:genid9 a rdf:List ;
+	rdf:first xsd:dateTime ;
+	rdf:rest _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first xsd:gYear ;
+	rdf:rest _:genid7 .
+
+_:genid7 a rdf:List ;
+	rdf:first xsd:gYearMonth ;
+	rdf:rest rdf:nil .
+
+<http://ocean-data.org/pattern/creative-work/published> rdfs:comment "The date and/or time the CreativeWork was published."@en-us ;
+	rdfs:label "published"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/title
+
+<http://ocean-data.org/pattern/creative-work/title> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range rdf:langString ;
+	rdfs:comment "The title of the CreativeWork"@en-us ;
+	rdfs:label "title"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/version
+
+<http://ocean-data.org/pattern/creative-work/version> a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain <http://ocean-data.org/pattern/creative-work/CreativeWork> ;
+	rdfs:range xsd:token ;
+	rdfs:comment "An identifier of the version of the CreativeWork"@en-us ;
+	rdfs:label "version"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/creative-work/Author
+
+<http://ocean-data.org/pattern/creative-work/Author> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Role> ;
+	rdfs:comment "The author of a CreativeWork."@en-us ;
+	rdfs:label "Author"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/Contributor
+
+<http://ocean-data.org/pattern/creative-work/Contributor> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Role> ;
+	rdfs:comment "A contributor of a CreativeWork"@en-us ;
+	rdfs:label "Contributor"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/CreativeWork
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> a owl:Class ;
+	rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/about> ;
+	owl:allValuesFrom owl:Thing .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid12 .
+
+_:genid12 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/hasPart> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid13 .
+
+_:genid13 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/isPartOf> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid14 .
+
+_:genid14 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/license> ;
+	owl:allValuesFrom owl:Thing .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid15 .
+
+_:genid15 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/mentions> ;
+	owl:allValuesFrom owl:Thing .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid16 .
+
+_:genid16 a owl:Restriction ;
+	owl:onProperty <http://ocean-data.org/pattern/creative-work/references> ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid17 .
+
+_:genid17 a owl:Restriction ;
+	owl:onProperty :derivedFrom ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid18 .
+
+_:genid18 a owl:Restriction ;
+	owl:onProperty :revisionOf ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> rdfs:subClassOf _:genid19 .
+
+_:genid19 a owl:Restriction ;
+	owl:onProperty :revisionOf ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/creative-work/CreativeWork> .
+
+<http://ocean-data.org/pattern/creative-work/CreativeWork> <http://ocean-data.org/pattern/agent/providesRole> <http://ocean-data.org/pattern/creative-work/Author> , <http://ocean-data.org/pattern/creative-work/Contributor> , <http://ocean-data.org/pattern/creative-work/Provider> , <http://ocean-data.org/pattern/creative-work/Publisher> ;
+	rdfs:comment "The most generic kind of creative work, including books, movies, photographs, software programs, etc."@en-us ;
+	rdfs:label "CreativeWork"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/Provider
+
+<http://ocean-data.org/pattern/creative-work/Provider> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Role> ;
+	rdfs:comment "The provider of a CreativeWork"@en-us ;
+	rdfs:label "Provider"@en-us .
+# 
+# http://ocean-data.org/pattern/creative-work/Publisher
+
+<http://ocean-data.org/pattern/creative-work/Publisher> a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Role> ;
+	rdfs:comment "The publisher of a CreativeWork"@en-us ;
+	rdfs:label "Publisher"@en-us .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
