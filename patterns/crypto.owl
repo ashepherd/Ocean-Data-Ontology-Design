@@ -21,28 +21,67 @@
 	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
 	rdfs:label "Pattern - Cryptographic Hash"@en-us ;
 	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Crypto"^^<xsd:anyURI> .
-# 
-# 
+#
+#
 # #################################################################
 # #
 # #    Annotation properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://purl.org/dc/terms/alternative
 
 dcterms:alternative a owl:AnnotationProperty .
-# 
-# 
-# 
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+# http://purl.org/dc/terms/alternative
+
+dcterms:alternative a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/created
+
+dcterms:created a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/creator
+
+dcterms:creator a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/description
+
+dcterms:description a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/issued
+
+dcterms:issued a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/modified
+
+dcterms:modified a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/publisher
+
+dcterms:publisher a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/source
+
+dcterms:source a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/title
+
+dcterms:title a owl:AnnotationProperty .
+
+#
+#
+#
 # #################################################################
 # #
 # #    Object Properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHash
 
 :cryptographicHash a owl:ObjectProperty ;
@@ -51,7 +90,7 @@ dcterms:alternative a owl:AnnotationProperty .
 	rdfs:range :CryptographicHash ;
 	rdfs:comment "The cryptographic hash for some resource"@en-us ;
 	rdfs:label "cryptographicHash"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHashScheme
 
 :cryptographicHashScheme a owl:ObjectProperty ;
@@ -59,16 +98,16 @@ dcterms:alternative a owl:AnnotationProperty .
 	a owl:FunctionalProperty ;
 	rdfs:comment "The cryptographic hash scheme that was used to generate the hash value."@en-us ;
 	rdfs:label "cryptographicHashScheme"@en-us .
-# 
-# 
-# 
+#
+#
+#
 # #################################################################
 # #
 # #    Data properties
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/cryptographicHashValue
 
 :cryptographicHashValue a owl:DatatypeProperty ;
@@ -78,7 +117,7 @@ dcterms:alternative a owl:AnnotationProperty .
 	rdfs:range xsd:token ;
 	rdfs:comment "The hash value generated for some resource using a certain cryptographic hash scheme"@en-us ;
 	rdfs:label "cryptographicHashValue"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/md5hash
 
 :md5hash a owl:DatatypeProperty ;
@@ -88,7 +127,7 @@ dcterms:alternative a owl:AnnotationProperty .
 	rdfs:range xsd:token ;
 	rdfs:comment "An MD5 hash value"@en-us ;
 	rdfs:label "md5hash"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/sha256hash
 
 :sha256hash a owl:DatatypeProperty ;
@@ -98,16 +137,16 @@ dcterms:alternative a owl:AnnotationProperty .
 	rdfs:range xsd:token ;
 	rdfs:comment "A SHA256 hash value."@en-us ;
 	rdfs:label "sha256hash"@en-us .
-# 
-# 
-# 
+#
+#
+#
 # #################################################################
 # #
 # #    Classes
 # #
 # #################################################################
-# 
-# 
+#
+#
 # http://ocean-data.org/pattern/crypto/CryptographicHash
 
 :CryptographicHash a owl:Class ;
@@ -126,7 +165,7 @@ _:genid2 a owl:Restriction ;
 
 :CryptographicHash rdfs:comment "A cryptographic hash for some resource"@en-us ;
 	rdfs:label "Cryptographic Hash"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/CryptographicHashScheme
 
 :CryptographicHashScheme a owl:Class ;
@@ -134,7 +173,7 @@ _:genid2 a owl:Restriction ;
 	rdfs:comment "A scheme for cryptographic hashes as identifiers"@en-us ;
 	rdfs:label "Cryptographic Hash Scheme"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions> .
-# 
+#
 # http://ocean-data.org/pattern/crypto/MD5Identifier
 
 :MD5Identifier a owl:Class ;
@@ -166,7 +205,7 @@ _:genid6 a owl:Restriction ;
 
 :MD5Identifier rdfs:comment "An MD5 hash"@en-us ;
 	rdfs:label "MD5 Identifier"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/MD5Scheme
 
 :MD5Scheme a owl:Class ;
@@ -175,7 +214,7 @@ _:genid6 a owl:Restriction ;
 	rdfs:comment "An MD5 hash"@en-us ;
 	rdfs:label "Message Digest Algorithm 5"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5> .
-# 
+#
 # http://ocean-data.org/pattern/crypto/SHA256Identifier
 
 :SHA256Identifier a owl:Class ;
@@ -207,7 +246,7 @@ _:genid10 a owl:Restriction ;
 
 :SHA256Identifier rdfs:comment "A SHA256 hash"@en-us ;
 	rdfs:label "SHA256 Identifier"@en-us .
-# 
+#
 # http://ocean-data.org/pattern/crypto/SHA256Scheme
 
 :SHA256Scheme a owl:Class ;
@@ -216,5 +255,5 @@ _:genid10 a owl:Restriction ;
 	rdfs:comment "A SHA256 hash"@en-us ;
 	rdfs:label "Secure Hash Algorithm 256"@en-us ;
 	rdfs:seeAlso <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/sha256> .
-# 
+#
 # Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

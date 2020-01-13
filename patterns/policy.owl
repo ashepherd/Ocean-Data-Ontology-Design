@@ -22,8 +22,6 @@
   dcterms:description "An ontology for describing policies."@en-us ;
   vann:preferredNamespaceUri "http://ocean-data.org/pattern/policy/"^^xsd:anyURI .
 
-<http://ocean-data.org/pattern/pattern/governedBy> a owl:ObjectProperty ;
-
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 # http://purl.org/dc/terms/alternative

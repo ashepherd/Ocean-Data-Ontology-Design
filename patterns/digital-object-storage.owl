@@ -22,6 +22,44 @@
 	dcterms:description "An ontology for describing the storage of digital objects."@en-us ;
 	vann:preferredNamespaceUri "http://ocean-data.org/pattern/digital-object-storage/"^^xsd:anyURI .
 
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+# http://purl.org/dc/terms/alternative
+
+dcterms:alternative a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/created
+
+dcterms:created a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/creator
+
+dcterms:creator a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/description
+
+dcterms:description a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/issued
+
+dcterms:issued a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/modified
+
+dcterms:modified a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/publisher
+
+dcterms:publisher a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/source
+
+dcterms:source a owl:AnnotationProperty .
+#
+# http://purl.org/dc/terms/title
+
+dcterms:title a owl:AnnotationProperty .
+
 #
 #
 # #################################################################
