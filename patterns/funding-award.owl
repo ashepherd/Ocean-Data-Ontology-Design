@@ -1,0 +1,299 @@
+@prefix : <http://ocean-data.org/pattern/funding-award/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://ocean-data.org/pattern/funding-award/> a owl:Ontology ;
+	owl:versionIRI <http://ocean-data.org/pattern/funding-award/> ;
+	owl:imports <http://ocean-data.org/pattern/agent/> , <http://ocean-data.org/pattern/identifier/> , <http://www.w3.org/2006/time#2016> ;
+	vann:preferredNamespaceUri "http://ocean-data.org/pattern/funding-award/"^^xsd:anyURI ;
+	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Funding-Award"^^<xsd:anyURI> ;
+	dcterms:created "2020-01-06"@en-us ;
+	dcterms:modified "2020-01-06"^^xsd:date ;
+	owl:versionInfo "0.1.0"@en-us ;
+	dcterms:issued "2020-01-06"^^xsd:date ;
+	dcterms:title "Pattern - Funding Award"@en-us ;
+	dcterms:publisher <http://lod.bco-dmo.org/id/affiliation/191> ;
+	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
+	rdfs:label "Pattern - Funding Award"@en-us ;
+	dcterms:description "An ontology for describing funding awards."@en-us .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/alternative
+
+dcterms:alternative a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/created
+
+dcterms:created a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/creator
+
+dcterms:creator a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/description
+
+dcterms:description a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/issued
+
+dcterms:issued a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/modified
+
+dcterms:modified a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/publisher
+
+dcterms:publisher a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/source
+
+dcterms:source a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/title
+
+dcterms:title a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/funding-award/awardee
+
+:awardee a owl:ObjectProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range <http://ocean-data.org/pattern/agent/Agent> ;
+	rdfs:comment "Refers to the awardee (Agent) that is responsible for the unit of work related to this Funding Award."@en-us ;
+	rdfs:label "awardee"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/fundingPeriod
+
+:fundingPeriod a owl:ObjectProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
+	rdfs:comment "Refers to the period of time in which the awardee agress to complete some unit of work."@en-us ;
+	rdfs:label "fundingPeriod"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/funds
+
+:funds a owl:ObjectProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range :FundedActivity ;
+	rdfs:comment "Refers to the Activity for which the Funding Award was provided."@en-us ;
+	rdfs:label "funds"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/hasLeadCollaborativeAward
+
+:hasLeadCollaborativeAward a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain :CollaborativeAward ;
+	rdfs:range :LeadCollaborativeAward ;
+	rdfs:comment "Refers to the Lead Collaborative Award amongst a set of Collaborative Awards."@en-us ;
+	rdfs:label "hasLeadCollaborativeAward"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/isContinuingGrantAwardOf
+
+:isContinuingGrantAwardOf a owl:ObjectProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range :FundingAward ;
+	rdfs:comment "Refers to the Grant Award that preceded the current Grant Award in which the awardee is continuing work on the same or related unit of work."@en-us ;
+	rdfs:label "isContinuingGrantAwardOf"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/isProviderOf
+
+:isProviderOf a owl:ObjectProperty ;
+	rdfs:domain :FundingAgent ;
+	rdfs:range :FundingAward ;
+	rdfs:comment "Refers to the Funding Award provided by some Funding Agent."@en-us ;
+	rdfs:label "isProviderOf"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/primaryAwardee
+
+:primaryAwardee a owl:ObjectProperty ;
+	rdfs:subPropertyOf :awardee ;
+	a owl:FunctionalProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range <http://ocean-data.org/pattern/agent/Agent> ;
+	rdfs:comment "refers to the one Agent who is primarily responsible for the unit of work related to a Funding Award."@en-us ;
+	rdfs:label "primaryAwardee"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/providedBy
+
+:providedBy a owl:ObjectProperty ;
+	rdfs:domain :FundingAward ;
+	rdfs:range :FundingAgent ;
+	rdfs:comment "Refers to the Funding Agent providing the Funding Award."@en-us ;
+	rdfs:label "providedBy"@en-us .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ocean-data.org/pattern/funding-award/CollaborativeAward
+
+:CollaborativeAward a owl:Class ;
+	rdfs:subClassOf :GrantAward , _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty :hasLeadCollaborativeAward ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :GrantAward .
+
+:CollaborativeAward rdfs:comment "Refers to a Grant Award that is related to one or more other Grant Awards for a shared unit of work amonst the awardees (Agents)."@en-us ;
+	rdfs:label "Collaborative Award"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/ContinuingGrantAward
+
+:ContinuingGrantAward a owl:Class ;
+	rdfs:subClassOf :GrantAward , _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty :isContinuingGrantAwardOf ;
+	owl:allValuesFrom :GrantAward .
+
+:ContinuingGrantAward rdfs:subClassOf _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty :isContinuingGrantAwardOf ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :GrantAward .
+
+:ContinuingGrantAward rdfs:comment "Refers to a Grant Award that is a continuation of a previous Grant Award."@en-us ;
+	rdfs:label "Continuing Grant Award"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/FundedActivity
+
+:FundedActivity a owl:Class ;
+	rdfs:comment "Refers to the thing for which the funding award was provided for."@en-us ;
+	rdfs:label "Funded Activity"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/FundingAgency
+
+:FundingAgency a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Organization> , :FundingAgent ;
+	rdfs:comment "Refers to a Funding Agent that is an Organization."@en-us ;
+	rdfs:label "Funding Agency"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/FundingAgent
+
+:FundingAgent a owl:Class ;
+	rdfs:subClassOf <http://ocean-data.org/pattern/agent/Agent> , _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty :isProviderOf ;
+	owl:allValuesFrom :FundingAward .
+
+:FundingAgent rdfs:subClassOf _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty :isProviderOf ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :FundingAward .
+
+:FundingAgent rdfs:comment "Refers to any Agent that provides a Funding Award to another Agent."@en-us ;
+	rdfs:label "Funding Agent"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/FundingAward
+
+:FundingAward a owl:Class ;
+	rdfs:subClassOf _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty :awardee ;
+	owl:allValuesFrom <http://ocean-data.org/pattern/agent/Agent> .
+
+:FundingAward rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty :fundingPeriod ;
+	owl:allValuesFrom <http://www.w3.org/2006/time#TemporalEntity> .
+
+:FundingAward rdfs:subClassOf _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty :funds ;
+	owl:allValuesFrom :FundedActivity .
+
+:FundingAward rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :providedBy ;
+	owl:allValuesFrom :FundingAgent .
+
+:FundingAward rdfs:subClassOf _:genid10 .
+
+_:genid10 a owl:Restriction ;
+	owl:onProperty :awardee ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass <http://ocean-data.org/pattern/agent/Agent> .
+
+:FundingAward rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty :funds ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :FundedActivity .
+
+:FundingAward rdfs:subClassOf _:genid12 .
+
+_:genid12 a owl:Restriction ;
+	owl:onProperty :providedBy ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :FundingAgent .
+
+:FundingAward rdfs:comment "Refers to a funding vehicle that sponsors some activity."@en-us ;
+	rdfs:label "FundingAward"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/GrantAward
+
+:GrantAward a owl:Class ;
+	rdfs:subClassOf :FundingAward ;
+	rdfs:comment "Refers to a funding vehicle granted to an Agent by another Agent to perform some unit of work."@en-us ;
+	rdfs:label "Grant Award"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/LeadCollaborativeAward
+
+:LeadCollaborativeAward a owl:Class ;
+	rdfs:subClassOf :CollaborativeAward , _:genid13 .
+
+_:genid13 a owl:Restriction ;
+	owl:onProperty :hasLeadCollaborativeAward ;
+	owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+	owl:onClass :GrantAward .
+
+:LeadCollaborativeAward rdfs:comment "Refers to the one Collaborative Award which is responisble for executing the unit of work shared amongst the other Collaborative Awards."@en-us ;
+	rdfs:label "Lead Collaborative Award"@en-us .
+# 
+# http://ocean-data.org/pattern/funding-award/SubContract
+
+:SubContract a owl:Class ;
+	rdfs:subClassOf :FundingAward ;
+	rdfs:comment "Refers to a funding vehicle where some Agent agrees to deliver some goods or services to another Agent as specified by some contracted, binding agreement."@en-us ;
+	rdfs:label "Sub-Contract"@en-us .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

@@ -22,54 +22,75 @@
 	dcterms:description "An ontology for describing agents such as people and organizations and the roles they play."@en-us ;
 	dcterms:creator <http://orcid.org/0000-0003-4486-9448> ;
 	vann:preferredNamespaceUri "http://ocean-data.org/pattern/agent/"^^xsd:anyURI .
-
-vann:preferredNamespaceUri a owl:AnnotationProperty .
-
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
 # http://purl.org/dc/terms/alternative
 
 dcterms:alternative a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/created
 
 dcterms:created a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/creator
 
 dcterms:creator a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/description
 
 dcterms:description a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/issued
 
 dcterms:issued a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/modified
 
 dcterms:modified a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/publisher
 
 dcterms:publisher a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/source
 
 dcterms:source a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/title
 
 dcterms:title a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
 
-#
-#
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+# 
+# 
+# 
 # #################################################################
 # #
 # #    Object Properties
 # #
 # #################################################################
-#
-#
+# 
+# 
+# http://ocean-data.org/pattern/agent/childOrganization
+
+:childOrganization a owl:ObjectProperty ;
+	owl:inverseOf :parentOrganization ;
+	a owl:FunctionalProperty , owl:IrreflexiveProperty ;
+	rdfs:domain :Organization ;
+	rdfs:range :Organization ;
+	owl:propertyDisjointWith :parentOrganization ;
+	rdfs:comment "Refers to an Organization which is wholly owned, operated, or managed by another Organization"@en-us ;
+	rdfs:label "childOrganization"@en-us .
+# 
 # http://ocean-data.org/pattern/agent/hasAgentWithRole
 
 :hasAgentWithRole a owl:ObjectProperty ;
@@ -77,7 +98,15 @@ dcterms:title a owl:AnnotationProperty .
 	rdfs:range owl:Thing ;
 	rdfs:comment "The entity in which this agent played a certain role"@en-us ;
 	rdfs:label "hasAgentWithRole"@en-us .
-#
+# 
+# http://ocean-data.org/pattern/agent/parentOrganization
+
+:parentOrganization a owl:ObjectProperty , owl:FunctionalProperty , owl:IrreflexiveProperty ;
+	rdfs:domain :Organization ;
+	rdfs:range :Organization ;
+	rdfs:comment "Refers to some other Organization to which this Organization is wholly a part of."@en-us ;
+	rdfs:label "parentOrganization"@en-us .
+# 
 # http://ocean-data.org/pattern/agent/performedBy
 
 :performedBy a owl:ObjectProperty ;
@@ -85,7 +114,7 @@ dcterms:title a owl:AnnotationProperty .
 	rdfs:range :Agent ;
 	rdfs:comment "The agent performing the role."@en-us ;
 	rdfs:label "performedBy"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/performs
 
 :performs a owl:ObjectProperty , owl:FunctionalProperty ;
@@ -93,7 +122,7 @@ dcterms:title a owl:AnnotationProperty .
 	rdfs:range :Role ;
 	rdfs:comment "The Role being performed by an Agent."@en-us ;
 	rdfs:label "performs"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/providesRole
 
 :providesRole a owl:ObjectProperty ;
@@ -101,7 +130,7 @@ dcterms:title a owl:AnnotationProperty .
 	rdfs:range :Role ;
 	rdfs:comment "Some thing provides the related Roles that could be associated to the thing. Ex: CreativeWork provides the Roles of Author, Contributor, Publisher, Provider, etc."@en-us ;
 	rdfs:label "providesRole"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/temporalExtent
 
 :temporalExtent a owl:ObjectProperty ;
@@ -109,22 +138,22 @@ dcterms:title a owl:AnnotationProperty .
 	rdfs:range time:TemporalEntity ;
 	rdfs:comment "The temporal extent bounding the role in which the agent performed."@en-us ;
 	rdfs:label "temporalExtent"@en-us .
-#
-#
-#
+# 
+# 
+# 
 # #################################################################
 # #
 # #    Classes
 # #
 # #################################################################
-#
-#
+# 
+# 
 # http://ocean-data.org/pattern/agent/Agent
 
 :Agent a owl:Class ;
 	rdfs:comment "Represents agents, e.g., persons, organizations, etc."@en-us ;
 	rdfs:label "Agent"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/AgentRole
 
 :AgentRole a owl:Class ;
@@ -175,59 +204,70 @@ _:genid7 a owl:Restriction ;
 
 :AgentRole rdfs:comment "An instance of AgentRole represents a role performed by an agent, which can be temporally restricted. Every agent role is performed by exactly one agent. One can create a subclass of AgentRole to model a particular kind of roles."@en-us ;
 	rdfs:label "AgentRole"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/Organization
 
 :Organization a owl:Class ;
-	rdfs:subClassOf :Agent ;
-	owl:disjointWith :Person ;
+	rdfs:subClassOf :Agent , _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty :childOrganization ;
+	owl:allValuesFrom :Organization .
+
+:Organization rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :parentOrganization ;
+	owl:allValuesFrom :Organization .
+
+:Organization owl:disjointWith :Person ;
 	rdfs:comment "An organization"@en-us ;
 	rdfs:label "Organization"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/Person
 
 :Person a owl:Class ;
 	rdfs:subClassOf :Agent ;
 	rdfs:comment "A person"@en-us ;
 	rdfs:label "Person"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/agent/Role
 
 :Role a owl:Class ;
 	rdfs:comment "The role being performed by a certain Agent."@en-us ;
 	rdfs:label "Role"@en-us .
-#
+# 
 # http://www.w3.org/2006/time#TemporalEntity
 
 time:TemporalEntity a owl:Class .
-#
-#
-#
+# 
+# 
+# 
 # #################################################################
 # #
 # #    General axioms
 # #
 # #################################################################
-#
-#
+# 
+# 
 
-_:genid8 a owl:AllDisjointClasses ;
-	owl:members _:genid12 .
+_:genid10 a owl:AllDisjointClasses ;
+	owl:members _:genid14 .
+
+_:genid14 a rdf:List ;
+	rdf:first :Agent ;
+	rdf:rest _:genid13 .
+
+_:genid13 a rdf:List ;
+	rdf:first :AgentRole ;
+	rdf:rest _:genid12 .
 
 _:genid12 a rdf:List ;
-	rdf:first :Agent ;
+	rdf:first :Role ;
 	rdf:rest _:genid11 .
 
 _:genid11 a rdf:List ;
-	rdf:first :AgentRole ;
-	rdf:rest _:genid10 .
-
-_:genid10 a rdf:List ;
-	rdf:first :Role ;
-	rdf:rest _:genid9 .
-
-_:genid9 a rdf:List ;
 	rdf:first time:TemporalEntity ;
 	rdf:rest rdf:nil .
-#
+# 
 # Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

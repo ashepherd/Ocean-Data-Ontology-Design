@@ -20,70 +20,70 @@
 	dcterms:source "https://github.com/BCODMO/Ocean-Data-Ontology_Identifier"^^<xsd:anyURI> ;
 	dcterms:title "Pattern - Identifier"@en-us ;
 	dcterms:creator <http://orcid.org/0000-0003-4486-9448> .
-#
-#
+# 
+# 
 # #################################################################
 # #
 # #    Annotation properties
 # #
 # #################################################################
-#
-#
+# 
+# 
 # http://purl.org/dc/terms/alternative
 
 dcterms:alternative a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/created
 
 dcterms:created a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/creator
 
 dcterms:creator a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/description
 
 dcterms:description a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/issued
 
 dcterms:issued a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/modified
 
 dcterms:modified a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/publisher
 
 dcterms:publisher a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/source
 
 dcterms:source a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/dc/terms/title
 
 dcterms:title a owl:AnnotationProperty .
-#
+# 
 # http://purl.org/vocab/vann/preferredNamespaceUri
 
 vann:preferredNamespaceUri a owl:AnnotationProperty .
-#
-#
-#
+# 
+# 
+# 
 # #################################################################
 # #
 # #    Object Properties
 # #
 # #################################################################
-#
-#
+# 
+# 
 # http://ocean-data.org/pattern/identifier/identifiedBy
 
 :identifiedBy a owl:ObjectProperty ;
 	rdfs:domain owl:Thing ;
 	rdfs:range :Identifier .
-#
+# 
 # http://ocean-data.org/pattern/identifier/identifierScheme
 
 :identifierScheme a owl:ObjectProperty , owl:FunctionalProperty ;
@@ -91,23 +91,23 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 	rdfs:range :IdentifierScheme ;
 	rdfs:comment "A scheme in which an identifier value will be unique."@en-us ;
 	rdfs:label "identifierScheme"@en-us .
-#
-#
-#
+# 
+# 
+# 
 # #################################################################
 # #
 # #    Data properties
 # #
 # #################################################################
-#
-#
+# 
+# 
 # http://ocean-data.org/pattern/identifier/created
 
 :created a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Identifier ;
 	rdfs:range xsd:dateTime ;
 	rdfs:comment "The created date and time."@en-us , "created"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/identifierValue
 
 :identifierValue a owl:DatatypeProperty , owl:FunctionalProperty ;
@@ -115,7 +115,7 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 	rdfs:range xsd:token ;
 	rdfs:comment "A value for an identifier which should be unique within a domain or realm."@en-us ;
 	rdfs:label "identifierValue"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/issued
 
 :issued a owl:DatatypeProperty , owl:FunctionalProperty ;
@@ -123,7 +123,7 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 	rdfs:range xsd:dateTime ;
 	rdfs:comment "THe date and time the idetifier was or shouldbe issued."@en-us ;
 	rdfs:label "issued"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/modified
 
 :modified a owl:DatatypeProperty , owl:FunctionalProperty ;
@@ -131,16 +131,24 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 	rdfs:range xsd:dateTime ;
 	rdfs:comment "The date and time the Identifier was modified."@en-us ;
 	rdfs:label "modified"@en-us .
-#
-#
-#
+# 
+# http://ocean-data.org/pattern/identifier/resolvableURL
+
+:resolvableURL a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Identifier ;
+	rdfs:range xsd:anyURI ;
+	rdfs:comment "An optional URL that resolves the identifier on the Internet."@en-us ;
+	rdfs:label "resolvableURL"@en-us .
+# 
+# 
+# 
 # #################################################################
 # #
 # #    Classes
 # #
 # #################################################################
-#
-#
+# 
+# 
 # http://ocean-data.org/pattern/identifier/AgentIdentifier
 
 :AgentIdentifier a owl:Class ;
@@ -159,7 +167,7 @@ _:genid2 a owl:Restriction ;
 
 :AgentIdentifier rdfs:comment "An Identifier whose scheme is AgentIdentifierScheme"@en-us ;
 	rdfs:label "AgentIdentifier"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/AgentIdentifierScheme
 
 :AgentIdentifierScheme a owl:Class ;
@@ -167,7 +175,7 @@ _:genid2 a owl:Restriction ;
 	dcterms:title "Agent"@en-us ;
 	rdfs:comment "Identifier Schemes that describe Agents (people, organizations, etc.)"@en-us ;
 	rdfs:label "Agent Identifier Type"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/DigitalObjectIdentifier
 
 :DigitalObjectIdentifier a owl:Class ;
@@ -175,7 +183,7 @@ _:genid2 a owl:Restriction ;
 	dcterms:alternative "DOI"@en-us ;
 	rdfs:comment "A DOI identifier"@en-us ;
 	rdfs:label "Digital Object Identifier (DOI)"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/DigitalResourceIdentifier
 
 :DigitalResourceIdentifier a owl:Class ;
@@ -194,14 +202,14 @@ _:genid4 a owl:Restriction ;
 
 :DigitalResourceIdentifier rdfs:comment "An Identifier whose scheme is DigitalResourceIdentifierScheme"@en-us ;
 	rdfs:label "DigitalResourceIdentifier"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/DigitalResourceIdentifierScheme
 
 :DigitalResourceIdentifierScheme a owl:Class ;
 	rdfs:subClassOf :IdentifierScheme ;
 	rdfs:comment "Identifier Schemes that describe Digital Resources (datasets, publications, etc.)"@en-us ;
 	rdfs:label "Digital Resource Identifier Scheme"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/HandleRegistryIdentifier
 
 :HandleRegistryIdentifier a owl:Class ;
@@ -209,7 +217,7 @@ _:genid4 a owl:Restriction ;
 	dcterms:alternative "Handle"@en-us ;
 	rdfs:comment "A Handle Registry identifier"@en-us ;
 	rdfs:label "Handle Registry Identifier (HDL)"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/Identifier
 
 :Identifier a owl:Class ;
@@ -235,19 +243,32 @@ _:genid7 a owl:Restriction ;
 :Identifier rdfs:subClassOf _:genid8 .
 
 _:genid8 a owl:Restriction ;
+	owl:onProperty :resolvableURL ;
+	owl:allValuesFrom xsd:anyURI .
+
+:Identifier rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :resolvableURL ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:anyURI .
+
+:Identifier rdfs:subClassOf _:genid10 .
+
+_:genid10 a owl:Restriction ;
 	owl:onProperty :identifierValue ;
 	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onDataRange xsd:token .
 
 :Identifier rdfs:comment "A unique identifier within some domain or realm"@en-us ;
 	rdfs:label "Identifier"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/IdentifierScheme
 
 :IdentifierScheme a owl:Class ;
 	rdfs:comment "A domain or realm in which an identifier value will be unique"@en-us ;
 	rdfs:label "IdentifierScheme"@en-us .
-#
+# 
 # http://ocean-data.org/pattern/identifier/OpenResearcherAndContributorIdentifier
 
 :OpenResearcherAndContributorIdentifier a owl:Class ;
@@ -255,5 +276,5 @@ _:genid8 a owl:Restriction ;
 	dcterms:alternative "ORCID"@en-us ;
 	rdfs:comment "An ORCID Identifier"@en-us ;
 	rdfs:label "Open Researcher and Contributor ID (ORCID)"@en-us .
-#
+# 
 # Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
